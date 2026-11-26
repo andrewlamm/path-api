@@ -2,10 +2,11 @@ import asyncio
 import logging
 
 import uvicorn
-from api import app
-from database import download_and_parse_database
-from models import Direction, Station
-from websocket_client import connect_to_websocket
+
+from app.api import app
+from app.database import download_and_parse_database
+from app.models import Direction, Station
+from app.websocket_client import connect_to_websocket
 
 logging.basicConfig(
   level=logging.INFO,

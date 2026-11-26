@@ -1,4 +1,4 @@
-from models import DefinedHeadsign, Station
+from app.models import DefinedHeadsign, Station
 
 STATION_DELTAS: dict[Station, dict[DefinedHeadsign, dict[Station, int]]] = {
   Station.NEWARK: {

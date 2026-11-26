@@ -4,10 +4,11 @@ import json
 import logging
 
 import aiohttp
-import state
 import websockets
-from estimate_trains import estimate_trains
-from models import Direction, RealTimeArrival, Station
+
+from app import state
+from app.estimate_trains import estimate_trains
+from app.models import Direction, RealTimeArrival, Station
 
 logger = logging.getLogger(__name__)
 

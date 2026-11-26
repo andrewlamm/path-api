@@ -1,7 +1,7 @@
 import asyncio
 from datetime import date
 
-from models import (
+from app.models import (
   Direction,
   RealTimeArrival,
   RouteDetails,

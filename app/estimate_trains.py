@@ -2,9 +2,9 @@ import logging
 from datetime import datetime
 from typing import TypedDict
 
-import state
-from models import DefinedHeadsign, Direction, RealTimeArrival, Station
-from station_deltas import STATION_DELTAS
+from app import state
+from app.models import DefinedHeadsign, Direction, RealTimeArrival, Station
+from app.station_deltas import STATION_DELTAS
 
 logger = logging.getLogger(__name__)
 
