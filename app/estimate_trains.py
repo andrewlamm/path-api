@@ -26,9 +26,9 @@ class RealTimeArrivalEstimate(TypedDict):
 
 def get_estimate_buffer(curr_arrival):
   if curr_arrival >= 1200:
-    # If train is more than 20m away, buffer of 5m
+    # If train is more than 20m away, buffer of 2m
     return 120
-  # Otherwise if more than 15m away, buffer of 3m
+  # Otherwise if more than 15m away, buffer of 1.5m
   if curr_arrival >= 900:
     return 90
   # Otherwise buffer of 2m
@@ -107,19 +107,20 @@ async def estimate_trains():
                 or station
                 not in target_train["estimated_from"]["estimated_stations_used"]
               ):
-                if target_train["estimated_from"] is None:
-                  target_train["estimated_from"] = {
-                    "estimated_stations_used": [station],
-                    "estimated_delta_used": delta,
-                  }
-                else:
-                  target_train["estimated_from"][
-                    "estimated_stations_used"
-                  ].append(station)
-                  target_train["estimated_from"]["estimated_delta_used"] = min(
-                    delta,
-                    target_train["estimated_from"]["estimated_delta_used"],
-                  )
+                if target_train["estimated_from"] is not None and target_train["estimated_from"]["estimated_delta_used"] > delta:
+                  if target_train["estimated_from"] is None:
+                    target_train["estimated_from"] = {
+                      "estimated_stations_used": [station],
+                      "estimated_delta_used": delta,
+                    }
+                  else:
+                    target_train["estimated_from"][
+                      "estimated_stations_used"
+                    ].append(station)
+                    target_train["estimated_from"]["estimated_delta_used"] = min(
+                      delta,
+                      target_train["estimated_from"]["estimated_delta_used"],
+                    )
 
                 found = True
                 break
