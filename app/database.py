@@ -261,18 +261,15 @@ async def download_and_parse_database():
       async with aiohttp.ClientSession() as session:
         checksum = await fetch_checksum(session)
         if checksum is None:
-          logger.info("No database update available.")
-          return
-
-        if checksum == state.database_checksum:
+          logger.error("No database update available, retrying after 30 seconds")
+        elif checksum == state.database_checksum:
           logger.info("Database is already up to date.")
-          return
+        else:
+          logger.info(f"Fetching new database with checksum: {checksum}")
+          await fetch_datafile(session, checksum)
+          state.database_checksum = checksum
 
-        logger.info(f"Fetching new database with checksum: {checksum}")
-        await fetch_datafile(session, checksum)
-        state.database_checksum = checksum
-
-        await read_from_database()
+          await read_from_database()
 
         # wait until next day 12am
         now = datetime.now(tz)
