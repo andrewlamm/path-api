@@ -25,10 +25,10 @@ thirty_third_street
 Directions can be either `to_ny` or `to_nj`
 
 ### Real-time Data
-`/realtime`: Real-time data for all stations and direcitons, straight from the same RidePATH API
-`/realtime/{station}`: Real-time data for a specific station
-`/realtime/{station}/{direction}`: Real-time data for a specific station and direction
-`/realtime_with_estimates{/station/{direction}}`: Real-time data for all stations and directions but include estimated trains (using ETAs of previous stations). Optional station and direction parameters to filter the results like above.
+`/realtime`: Real-time data for all stations and direcitons, straight from the same RidePATH API          
+`/realtime/{station}`: Real-time data for a specific station           
+`/realtime/{station}/{direction}`: Real-time data for a specific station and direction         
+`/realtime_with_estimates{/station/{direction}}`: Real-time data for all stations and directions but include estimated trains (using ETAs of previous stations). Optional station and direction parameters to filter the results like above.        
 
 ### Schedules
 `/schedule/{station}`: Train schedule for a specific station. 
