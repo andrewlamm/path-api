@@ -1,3 +1,4 @@
+import argparse
 import asyncio
 import logging
 
@@ -15,7 +16,11 @@ logging.basicConfig(
 
 
 async def main():
-  config = uvicorn.Config(app, host="0.0.0.0", port=8000, log_level="info")
+  parser = argparse.ArgumentParser()
+  parser.add_argument("--port", type=int, default=8000)
+  args = parser.parse_args()
+
+  config = uvicorn.Config(app, host="0.0.0.0", port=args.port, log_level="info")
 
   server = uvicorn.Server(config)
 
